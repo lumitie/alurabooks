@@ -1,0 +1,178 @@
+.cabeçalho__menu-hamburguer {
+    width: 24px;
+    height: 24px;
+    background-image: url("../img/Menu.svg");
+    /* Os dois pontos nesse caso "../" significa que ele voltará um nivel nas pastas para achar a imagem Menu, do contrário ele procuraria a imagem dentro da pasta styles que é aonde está o header. */
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    /* O inline block, ao contrario do inline, permite que eu ajuste a altura e largura dos elementos */
+}
+
+.cabeçalho {
+    background-color: var(--branco);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.container__imagem {
+    padding: 1em;
+}
+
+.lista-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    width: 60vw;
+}
+
+.container__botao:checked~.lista-menu {
+/* O ~ se chama "combinador css", ele procura o elemento que vem em seguida do primeiro que usamos (no caso container__botao) com a classe que usei depois (lista-menu)
+Entao se o container__botao  estiver checked, ou seja, clicado, ele vai procurar o outro que vem depois dele que contenha a classe lista-menu e vai usar o display block nele*/
+    display: block;
+}
+
+.lista-menu__titulo, .lista-menu__item {
+    padding: 1em;
+    background-color: var(--branco);
+}
+
+.lista-menu__titulo {
+    color: var(--laranja);
+    font-weight: 700;
+}
+
+.lista-menu__link {
+        background: var(--azul-degrade);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        /* Os webkits servem para funcionar em outros tipos de navegadores */
+        background-clip: text;
+        text-transform: uppercase;
+}
+
+.container__botao {
+    display: none;
+}
+
+.container__titulo {
+    display: none;
+}
+
+.opções {
+    display: none;
+}
+
+.container__texto {
+    display: none;
+}
+
+.container__botao:checked~.container__rótulo>.cabeçalho__menu-hamburguer {
+    background-image: url("../img/Menu Aberto.svg");
+
+}
+
+/* o simbolo ~ e o > são *combinadores*. O ~ procura um elemento que esteja em seguida e que possua essa classe. Ou seja, ele procurou outro elemento que possuisse a classe .container__rótulo e que viesse depois da classe container__botão (encontrou o label). O simbolo > procura algo que está dentro do elemento, então ele procurou dentro da label container__rótulo e encontrou o cabeçalho__menu-hamburguer. 
+CHECKED é uma pseudoclasse que detecta se o input está checked (marcado)*/
+
+.container__botao:checked~.container__rótulo {
+    background: var(--azul-degrade);
+}
+
+@media screen and (min-width: 1024px) {
+    /* @media é media query e screen é media type
+    estamos usando a largura minima porque começamos no mobile first, ou seja, fizemos primeiro o mobile e depois fomos aumentando a tela, do contrário seria um desktop first (primeiro a tela grande e depois vai diminuindo, então usaríamos o máx width */
+    .container__titulo, .container__titulo--negrito {
+        font-family: var(--fonte-secundaria);
+        font-size: 30px;
+    }
+
+    .container__titulo {
+    font-weight: 400;
+    display: block;
+    }
+
+    .container__titulo--negrito {
+    font-weight: 700;
+    }
+
+    .opções {
+        display: flex;
+    }
+    .opções__item {
+    padding: 1em;
+    text-transform: uppercase;
+    }
+
+    .opções__link {
+        text-decoration: none;
+        color: var(--preto);
+    }
+
+    .container__imagem-transparante {
+        display: none;
+    }
+
+    .cabeçalho__menu-hamburguer {
+        display: none;
+    }
+
+    .opções__botão:checked ~ .lista-menu {
+        display: block;
+        width: auto;
+    }
+
+    .opções__botão {
+        display: none;
+    }
+
+    .opções__botão:checked~.opções__rótulo > .opções__item {
+        background: var(--azul-degrade);
+        color: var(--branco);
+    }
+    
+    /* .opções__item {
+        padding: 2em 1em;
+    }
+    na tela da professora o fundo estava estreito então ela adicionou isso.    
+    */
+
+    .lista-menu__item:hover {
+        background: var(--azul-degrade);
+    }
+    
+    .lista-menu__item:hover>.lista-menu__link {
+        -webkit-text-fill-color: var(--branco);
+        text-decoration: none;
+    }
+
+}
+
+@media screen and (min-width: 1728px) {
+    .container__link {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--preto);
+    }
+
+    .cabeçalho {
+        padding: 2em;
+    }
+
+    .opções {
+        margin-right: auto;
+        /* quando usamos flex container e colocamos um valor para margem de lef, right bottom etc e colocamos "auto", ele usará todo esse espaço com os itens*/
+    }
+
+    .container__texto {
+        display: block;
+    }
+}
